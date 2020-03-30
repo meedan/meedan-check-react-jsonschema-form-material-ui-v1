@@ -10,6 +10,7 @@ if (process.env.NODE_ENV !== 'production' && process.env.NO_STUBS === undefined)
 
 var config = {
   entry: path.join(__dirname, 'src/index.js'),
+  devtool: 'source-map',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
