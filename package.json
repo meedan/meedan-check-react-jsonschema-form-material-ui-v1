@@ -25,6 +25,7 @@
   },
   "description": "Material UI implementation of react-jsonschema-form (Meedan Check version -- fixes https://github.com/vip-git/react-jsonschema-form-material-ui/issues/223)",
   "devDependencies": {
+    "@material-ui/core": "^1.4.3",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.4",
@@ -83,12 +84,11 @@
   "main": "index.js",
   "name": "meedan-check-react-jsonschema-form-material-ui-v1",
   "peerDependencies": {
-    "@material-ui/core": "^1.4.3",
     "@material-ui/icons": "^1.0.0-beta.42",
     "immutability-helper": "^2.6.5",
     "lodash": "^4.17.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
-  "version": "30.0.2"
+  "version": "30.0.3"
 }

@@ -29,7 +29,7 @@ var config = {
     extensions: ['.js', '.jsx'],
     alias
   },
-  externals: /^(react|material-ui(\/.*)?|immutability-helper|classnames|codemirror|lodash(\/.*)?|@material-ui\/icons(\/.*)?|react-codemirror2|shortid)$/,
+  externals: /^(react|react-dom|immutability-helper|classnames|codemirror|lodash(\/.*)?|@material-ui\/icons(\/.*)?|react-codemirror2|shortid)$/,
   plugins: [
     new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("production") })
   ],
