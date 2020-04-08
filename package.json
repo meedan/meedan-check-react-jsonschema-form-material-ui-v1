@@ -82,7 +82,7 @@
   },
   "license": "ISC",
   "main": "index.js",
-  "name": "meedan-check-react-jsonschema-form-material-ui-v1",
+  "name": "@meedan/react-jsonschema-form-material-ui-v1",
   "peerDependencies": {
     "@material-ui/icons": "^1.0.0-beta.42",
     "immutability-helper": "^2.6.5",
