@@ -5,6 +5,7 @@ import isEqual from 'lodash/isEqual';
 import { generate } from 'shortid';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
+import JssProvider from 'react-jss/lib/JssProvider';
 import formStyles from './form-styles';
 import FormField from './FormField';
 import updateFormData, { addListItem, removeListItem, moveListItem } from './helpers/update-form-data';
@@ -64,36 +65,38 @@ class Form extends React.Component {
     const { classes, formData, onSubmit, actionButtonPos, onChange, onCancel, submitValue, ...rest } = this.props;
     const { validation, id } = this.state;
     return (
-      <MuiPickersUtilsProvider utils={MomentUtils}>
-        <Paper className={classes.root}>
-          {
-            (actionButtonPos === 'top') ? 
-                  <FormButtons onSubmit={this.onSubmit} submitValue={submitValue} onCancel={onCancel} classes={classes} />
-                  : null
-            
-          }
-          <ValidationMessages validation={validation} />
-          <FormField
-            path={''}
-            data={this.state.data}
-            id={id}
-            onChange={this.onChange}
-            onSubmit={this.onSubmit}
-            validation={validation}
-            onMoveItemUp={this.onMoveItemUp}
-            onMoveItemDown={this.onMoveItemDown}
-            onDeleteItem={this.onDeleteItem}
-            onAddItem={this.onAddItem}
-            {...rest}
-          />
-          {
-            (!actionButtonPos) ? 
-                  <FormButtons onSubmit={this.onSubmit} submitValue={submitValue} onCancel={onCancel} classes={classes} />
-                  : null
-            
-          }
-        </Paper>
-      </MuiPickersUtilsProvider>
+      <JssProvider>
+        <MuiPickersUtilsProvider utils={MomentUtils}>
+          <Paper className={classes.root}>
+            {
+              (actionButtonPos === 'top') ?
+                    <FormButtons onSubmit={this.onSubmit} submitValue={submitValue} onCancel={onCancel} classes={classes} />
+                    : null
+
+            }
+            <ValidationMessages validation={validation} />
+            <FormField
+              path={''}
+              data={this.state.data}
+              id={id}
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+              validation={validation}
+              onMoveItemUp={this.onMoveItemUp}
+              onMoveItemDown={this.onMoveItemDown}
+              onDeleteItem={this.onDeleteItem}
+              onAddItem={this.onAddItem}
+              {...rest}
+            />
+            {
+              (!actionButtonPos) ?
+                    <FormButtons onSubmit={this.onSubmit} submitValue={submitValue} onCancel={onCancel} classes={classes} />
+                    : null
+
+            }
+          </Paper>
+        </MuiPickersUtilsProvider>
+      </JssProvider>
     );
   }
 }
