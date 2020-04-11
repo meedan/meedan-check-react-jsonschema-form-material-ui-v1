@@ -20,7 +20,7 @@ const createGenerateClassName = () => {
 
   return (rule, styleSheet) => {
     classCounter += 1;
-    return `ADAM-was-here-${classCounter}`;
+    return `meedan-jsonschema${classCounter}`;
   };
 };
 
@@ -81,40 +81,50 @@ class Form extends React.Component {
     const { validation, id } = this.state;
 
     return (
-      <JssProvider jss={jss}>
-        <MuiPickersUtilsProvider utils={MomentUtils}>
-          <Paper className={classes.root}>
-            {
-              (actionButtonPos === 'top') ?
-                    <FormButtons onSubmit={this.onSubmit} submitValue={submitValue} onCancel={onCancel} classes={classes} />
-                    : null
+      <MuiPickersUtilsProvider utils={MomentUtils}>
+        <Paper className={classes.root}>
+          {
+            (actionButtonPos === 'top') ?
+                  <FormButtons onSubmit={this.onSubmit} submitValue={submitValue} onCancel={onCancel} classes={classes} />
+                  : null
 
-            }
-            <ValidationMessages validation={validation} />
-            <FormField
-              path={''}
-              data={this.state.data}
-              id={id}
-              onChange={this.onChange}
-              onSubmit={this.onSubmit}
-              validation={validation}
-              onMoveItemUp={this.onMoveItemUp}
-              onMoveItemDown={this.onMoveItemDown}
-              onDeleteItem={this.onDeleteItem}
-              onAddItem={this.onAddItem}
-              {...rest}
-            />
-            {
-              (!actionButtonPos) ?
-                    <FormButtons onSubmit={this.onSubmit} submitValue={submitValue} onCancel={onCancel} classes={classes} />
-                    : null
+          }
+          <ValidationMessages validation={validation} />
+          <FormField
+            path={''}
+            data={this.state.data}
+            id={id}
+            onChange={this.onChange}
+            onSubmit={this.onSubmit}
+            validation={validation}
+            onMoveItemUp={this.onMoveItemUp}
+            onMoveItemDown={this.onMoveItemDown}
+            onDeleteItem={this.onDeleteItem}
+            onAddItem={this.onAddItem}
+            {...rest}
+          />
+          {
+            (!actionButtonPos) ?
+                  <FormButtons onSubmit={this.onSubmit} submitValue={submitValue} onCancel={onCancel} classes={classes} />
+                  : null
 
-            }
-          </Paper>
-        </MuiPickersUtilsProvider>
-      </JssProvider>
+          }
+        </Paper>
+      </MuiPickersUtilsProvider>
     );
   }
 }
 
-export default withStyles(formStyles)(Form);
+
+
+const SafeForm = (props) => {
+  const WithStylesForm = withStyles(formStyles)(Form);
+
+  return (
+    <JssProvider jss={jss}>
+      <WithStylesForm {...props} />
+    </JssProvider>
+  );
+};
+
+export default SafeForm;
