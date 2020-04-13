@@ -5,12 +5,28 @@ import isEqual from 'lodash/isEqual';
 import { generate } from 'shortid';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
+import { create } from 'jss';
+import muiJssPreset from 'material-ui/styles/jssPreset';
+import JssProvider from 'react-jss/lib/JssProvider';
 import formStyles from './form-styles';
 import FormField from './FormField';
 import updateFormData, { addListItem, removeListItem, moveListItem } from './helpers/update-form-data';
 import getValidationResult from './helpers/validation';
 import ValidationMessages from './ValidationMessages';
 import FormButtons from './FormButtons';
+
+const createGenerateClassName = () => {
+  let classCounter = 0;
+
+  return (rule, styleSheet) => {
+    classCounter += 1;
+    return `meedan-jsonschema${classCounter}`;
+  };
+};
+
+const jss = create(muiJssPreset()).setup({
+  createGenerateClassName,
+});
 
 class Form extends React.Component {
   state = {
@@ -63,14 +79,15 @@ class Form extends React.Component {
   render() {
     const { classes, formData, onSubmit, actionButtonPos, onChange, onCancel, submitValue, ...rest } = this.props;
     const { validation, id } = this.state;
+
     return (
       <MuiPickersUtilsProvider utils={MomentUtils}>
         <Paper className={classes.root}>
           {
-            (actionButtonPos === 'top') ? 
+            (actionButtonPos === 'top') ?
                   <FormButtons onSubmit={this.onSubmit} submitValue={submitValue} onCancel={onCancel} classes={classes} />
                   : null
-            
+
           }
           <ValidationMessages validation={validation} />
           <FormField
@@ -87,10 +104,10 @@ class Form extends React.Component {
             {...rest}
           />
           {
-            (!actionButtonPos) ? 
+            (!actionButtonPos) ?
                   <FormButtons onSubmit={this.onSubmit} submitValue={submitValue} onCancel={onCancel} classes={classes} />
                   : null
-            
+
           }
         </Paper>
       </MuiPickersUtilsProvider>
@@ -98,4 +115,18 @@ class Form extends React.Component {
   }
 }
 
-export default withStyles(formStyles)(Form);
+const StyledForm = withStyles(formStyles)(Form);
+
+function withJss(WrappedComponent) {
+  return class extends React.Component {
+    render() {
+      return (
+        <JssProvider jss={jss}>
+          <WrappedComponent {...this.props} />
+        </JssProvider>
+      );
+    }
+  };
+}
+
+export default withJss(StyledForm);
