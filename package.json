@@ -82,7 +82,7 @@
   },
   "license": "ISC",
   "main": "index.js",
-  "name": "@meedan/react-jsonschema-form-material-ui-v1-sandbox",
+  "name": "@meedan/react-jsonschema-form-material-ui-v1",
   "peerDependencies": {
     "@material-ui/icons": "^1.0.0-beta.42",
     "immutability-helper": "^2.6.5",
@@ -90,5 +90,5 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
-  "version": "31.0.15"
+  "version": "30.1.0"
 }
