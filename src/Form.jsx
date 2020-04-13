@@ -115,16 +115,18 @@ class Form extends React.Component {
   }
 }
 
-const WithStylesForm = withStyles(formStyles)(Form);
+const StyledForm = withStyles(formStyles)(Form);
 
-class SafeForm extends React.Component {
-  render() {
-    return (
-      <JssProvider jss={jss}>
-        <WithStylesForm {...props} />
-      </JssProvider>
-    );
-  }
+function withJss(WrappedComponent) {
+  return class extends React.Component {
+    render() {
+      return (
+        <JssProvider jss={jss}>
+          <WrappedComponent {...this.props} />
+        </JssProvider>
+      );
+    }
+  };
 }
 
-export default SafeForm;
+export default withJss(StyledForm);
