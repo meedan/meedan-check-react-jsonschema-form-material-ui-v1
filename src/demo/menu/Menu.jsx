@@ -1,10 +1,10 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Hidden from 'material-ui/Hidden';
-import IconButton from 'material-ui/IconButton';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Hidden from '@material-ui/core/Hidden';
+import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import LeftDrawer from './LeftDrawer';
 import menuStyles from './menu-styles';
@@ -14,9 +14,13 @@ class RawMenuAppBar extends React.Component {
     drawerOpen: false,
   };
 
-  toggleDrawer = visible => () => {
-    this.setState({ drawerOpen: visible });
-  };
+  openDrawer = () => {
+    this.setState({ drawerOpen: true });
+  }
+
+  closeDrawer = () => {
+    this.setState({ drawerOpen: false });
+  }
 
   render() {
     const { classes, onSelectMenuItem } = this.props;
@@ -29,16 +33,16 @@ class RawMenuAppBar extends React.Component {
               className={classes.menuButton}
               color='inherit'
               aria-label='Menu'
-              onClick={this.toggleDrawer(true)}
+              onClick={this.openDrawer}
             >
               <MenuIcon />
             </IconButton>
           </Hidden>
           <div className={classes.flexCtr}>
-            <Typography variant='title' color='inherit'>material-ui-jsonschema-form</Typography>
+            <Typography variant='h2' color='inherit'>material-ui-jsonschema-form</Typography>
           </div>
         </Toolbar>
-        <LeftDrawer open={drawerOpen} toggleDrawer={this.toggleDrawer} onSelectMenuItem={onSelectMenuItem} />
+        <LeftDrawer open={drawerOpen} closeDrawer={this.closeDrawer} onSelectMenuItem={onSelectMenuItem} />
       </AppBar>
     );
   }

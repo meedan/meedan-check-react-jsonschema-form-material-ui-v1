@@ -1,4 +1,3 @@
-// import Input, { InputLabel } from 'material-ui/Input'; // eslint-disable-line import/no-named-default
 import getComponentProps from './get-component-props';
 import getLabelComponentProps from './get-label-component-props';
 import getLabelComponent from './get-label-component';

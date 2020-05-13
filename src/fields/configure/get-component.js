@@ -1,7 +1,5 @@
-// import Input, { InputLabel } from 'material-ui/Input'; // eslint-disable-line import/no-named-default
-const { RadioGroup, Select, Checkbox, Picker } = require('../components');
-
-const Input = require('material-ui/Input').default;
+import Input from '@material-ui/core/Input';
+import { RadioGroup, Select, Checkbox, DatePicker, DatetimePicker, TimePicker } from '../components';
 
 export default ({ schema, uiSchema = {} }) => {
   // console.log('getComponent schema: %o, uiSchema: %o', schema, uiSchema);
@@ -9,19 +7,17 @@ export default ({ schema, uiSchema = {} }) => {
   const { type } = schema;
 
   if (schema.enum) {
-    if (widget === 'radio') {
-      return RadioGroup;
+    switch (widget) {
+      case 'radio': return RadioGroup;
+      case 'checkboxes': return Checkbox;
+      default: return Select;
     }
-    else if (widget === 'checkboxes') {
-      return Checkbox;
-    }
-    return Select;
   }
-  else if (type === 'boolean') {
-    return Checkbox;
+  switch (type) {
+    case 'boolean': return Checkbox;
+    case 'material-date': return DatePicker;
+    case 'material-time': return TimePicker;
+    case 'material-datetime': return DatetimePicker;
+    default: return Input;
   }
-  else if (type === 'material-date' || type === 'material-time' || type === 'material-datetime') {
-    return Picker;
-  }
-  return Input;
 };

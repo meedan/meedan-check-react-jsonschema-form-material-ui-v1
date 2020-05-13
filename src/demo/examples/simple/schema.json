@@ -27,6 +27,14 @@
       "type": "material-date",
       "title": "Date"
     },
+    "time": {
+      "type": "material-time",
+      "title": "Time"
+    },
+    "datetime": {
+      "type": "material-datetime",
+      "title": "Datetime"
+    },
     "password": {
       "type": "string",
       "title": "Password",

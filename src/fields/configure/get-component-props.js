@@ -1,18 +1,16 @@
 import without from 'lodash/without';
-import moment from 'moment';
 import getMuiProps from './get-mui-props';
 import getInputType from './get-input-type';
 import valuesToOptions from './values-to-options';
 
 const toNumber = (v) => {
-  if (v === '' || v === undefined) return v;
+  if (v === '' || v === undefined) return undefined;
   const n = Number(v);
-  return (!Number.isNaN(n) ? n : v);
+  return Number.isNaN(n) ? undefined : n;
 };
 const coerceValue = (type, value) => {
+  if (value === undefined || value === null) return undefined;
   switch (type) {
-    case 'string':
-      return (typeof value === 'string' ? value : String(value));
     case 'number':
     case 'integer':
     case 'double':
@@ -23,10 +21,9 @@ const coerceValue = (type, value) => {
       return value;
   }
 };
-const onChangeHandler = (onChange, type) => (e) => {
-  const value = (type === 'material-date' || type === 'material-time' || type === 'material-datetime') ?
-                  e.format() : coerceValue(type, e.target.value);
-  if (value !== undefined) onChange(value);
+const onChangeHandler = (onChange, type) => (ev) => {
+  const value = coerceValue(type, ev.target.value);
+  onChange(value);
 };
 const onCheckboxChangeHandler = (onChange, title) => (e) => {
   const spec = {
