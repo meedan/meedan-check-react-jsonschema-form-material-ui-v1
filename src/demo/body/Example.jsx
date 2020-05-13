@@ -1,32 +1,20 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 import styles from './example-styles';
 import Source from './Source';
 import Form from '../../Form';
 
 class Example extends React.Component {
-  state = {
-    ...this.props.data,
-  }
-  componentWillReceiveProps = (nextProps) => {
-    this.setState({
-      ...nextProps.data,
-    });
-  }
+  state = this.props.data
   onChange = type => (value) => {
     this.setState({ [type]: value });
   }
-  onFormChanged = ({ formData }) => {
-    this.setState({ formData });
-  }
-  onSubmit = (value) => {
-    console.log('onSubmit: %s', JSON.stringify(value)); // eslint-disable-line no-console
+  onSubmit = () => {
+    console.log('onSubmit');
   }
   onCancel = () => {
-    this.setState({
-      ...this.props.data,
-    });
+    this.setState(this.props.data);
   }
   render() {
     const { data, classes } = this.props;
@@ -49,10 +37,10 @@ class Example extends React.Component {
             <Form
               schema={schema}
               uiSchema={uiSchema}
-              formData={formData}
+              value={formData}
               onCancel={this.onCancel}
               onSubmit={this.onSubmit}
-              onChange={this.onFormChanged}
+              onChange={this.onChange('formData')}
             />
           </div>
         </div>

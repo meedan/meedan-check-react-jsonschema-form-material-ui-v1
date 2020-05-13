@@ -1,30 +1,29 @@
 import React from 'react';
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
-import { FormControl, FormHelperText } from 'material-ui/Form';
-import Input from 'material-ui/Input';
+import { withStyles } from '@material-ui/core/styles';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Input from '@material-ui/core/Input';
 import fieldStyles from './field-styles';
 
 // for unit testing only
-export class RawConfiguredField extends React.Component {
-  shouldComponentUpdate = nextProps => this.props.data !== nextProps.data
+export class RawConfiguredField extends React.PureComponent {
   render() {
     const {
-      classes = {}, data, type, descriptionText, helpText, Component = Input, LabelComponent, labelComponentProps = {},
+      classes = undefined, data, type, helpText, Component = Input, LabelComponent, labelComponentProps = {},
       title, className, componentProps = {}, id,
     } = this.props;
     return (
-      <FormControl className={classNames(classes.root, { [classes.withLabel]: LabelComponent })}>
+      <FormControl classes={classes}>
         {LabelComponent && title &&
           <LabelComponent
             {...labelComponentProps}
           >{title}
           </LabelComponent>
         }
-        {descriptionText && <p className={classes.description}>{descriptionText}</p>}
         <Component
           className={className && classes[className]}
-          value={data}
+          value={data === undefined ? '' : data /* "" means, ensure it's a controlled component */}
           type={type}
           {...componentProps}
         />

@@ -1,8 +1,5 @@
-// import Input, { InputLabel } from 'material-ui/Input'; // eslint-disable-line import/no-named-default
-import { FormLabel } from 'material-ui/Form';
-
-const { InputLabel } = require('material-ui/Input');
-
+import FormLabel from '@material-ui/core/FormLabel';
+import InputLabel from '@material-ui/core/InputLabel';
 
 export default ({ schema, uiSchema = {} }) => {
   const widget = uiSchema['ui:widget'];
@@ -12,6 +9,12 @@ export default ({ schema, uiSchema = {} }) => {
     return FormLabel;
   }
   // boolean
-  if (type === 'boolean' || widget === 'checkboxes' || type === 'material-date' || type === 'material-time' || type === 'material-datetime') return null;
+  if (
+    type === 'boolean' ||
+    widget === 'checkboxes' ||
+    type === 'material-date' ||
+    type === 'material-time' ||
+    type === 'material-datetime'
+  ) return null;
   return InputLabel;
 };

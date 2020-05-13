@@ -1,9 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 import endsWith from 'lodash/endsWith';
-import isEqual from 'lodash/isEqual';
-import { withStyles } from 'material-ui/styles';
-import { InputLabel } from 'material-ui/Input';
+import { withStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
 import fieldSetStyles from './field-set-styles';
 import FieldSetArray from './FieldSetArray';
 import FieldSetObject from './FieldSetObject';
@@ -24,8 +23,7 @@ export const FieldSetContent = withStyles(fieldSetStyles.fieldSetContent)(RawFie
 
 
 // for unit testing
-export class RawFieldSet extends React.Component {
-  shouldComponentUpdate = nextProps => !isEqual(this.props.data, nextProps.data)
+export class RawFieldSet extends React.PureComponent {
   render() {
     const { className, path, classes, schema = {} } = this.props;
     return (

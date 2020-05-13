@@ -1,10 +1,12 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import styles from './body-styles';
 import Example from './Example';
 
-export default withStyles(styles)(({ selectedDemo, classes }) => (
+const Body = ({ selectedDemo, classes }) => (
   <div className={classes.body}>
-    {<Example data={selectedDemo} />}
+    <Example key={selectedDemo.title} data={selectedDemo} />
   </div>
-));
+);
+
+export default withStyles(styles)(Body);
