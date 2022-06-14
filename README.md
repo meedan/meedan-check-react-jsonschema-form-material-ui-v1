@@ -1,4 +1,8 @@
-# material-ui-jsonschema-form
+# This project is now archived and no longer maintained
+
+Please see [the original `react-jsonschema-form`](https://github.com/rjsf-team/react-jsonschema-form) if you want a project that is maintained.
+
+## material-ui-jsonschema-form
 
 A [Material UI](http://www.material-ui.com/) port of [react-jsonschema-form](https://github.com/mozilla-services/react-jsonschema-form).
 
