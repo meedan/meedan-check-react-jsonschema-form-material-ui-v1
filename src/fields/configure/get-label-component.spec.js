@@ -17,9 +17,7 @@ describe('getLabelComponent', () => {
   beforeEach(() => {
     InputLabelSpy = sinon.spy();
     getLabelComponent = inject({
-      'material-ui/Input': {
-        InputLabel: InputLabelSpy,
-      },
+      '@material-ui/core/InputLabel': InputLabelSpy,
     }).default;
   });
   it('returns InputLabel by default', () => {

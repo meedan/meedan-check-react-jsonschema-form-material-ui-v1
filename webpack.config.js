@@ -16,6 +16,9 @@ var config = {
     filename: 'bundle.js',
     libraryTarget: 'commonjs',
   },
+  watchOptions: {
+    ignored: /node_modules/,
+  },
   module: {
     rules: [
       {
@@ -29,9 +32,9 @@ var config = {
     extensions: ['.js', '.jsx'],
     alias
   },
-  externals: /^(react|react-dom|immutability-helper|classnames|codemirror|lodash(\/.*)?|@material-ui\/icons(\/.*)?|react-codemirror2|shortid)$/,
+  externals: /^(react|react-dom|@material-ui(\/.*)?)$/,
   plugins: [
-    new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("production") })
+    new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "production") })
   ],
 }
 module.exports = config
